@@ -65,6 +65,11 @@ public class ApiResponse<T> {
     private int status;
 
     /**
+     * Application response code.
+     */
+    private String code;
+
+    /**
      * Human-readable response message.
      */
     private String message;
@@ -167,12 +172,14 @@ public class ApiResponse<T> {
      */
     public static ApiResponse<Void> error(
             HttpStatus status,
+            String code,
             String message,
             Map<String, String> errors) {
 
         return ApiResponse.<Void>builder()
                 .success(false)
                 .status(status.value())
+                .code(code)
                 .message(message)
                 .errors(errors)
                 .build();

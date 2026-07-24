@@ -38,6 +38,7 @@ public class GlobalExceptionHandler {
                 .body(
                         ApiResponse.error(
                                 errorCode.getStatus(),
+                                errorCode.getCode(),
                                 ex.getMessage(),
                                 null
                         )
@@ -64,6 +65,7 @@ public class GlobalExceptionHandler {
                 .body(
                         ApiResponse.error(
                                 ErrorCode.VALIDATION_FAILED.getStatus(),
+                                ErrorCode.VALIDATION_FAILED.getCode(),
                                 ErrorCode.VALIDATION_FAILED.getMessage(),
                                 errors
                         )
@@ -81,6 +83,7 @@ public class GlobalExceptionHandler {
                 .body(
                         ApiResponse.error(
                                 ErrorCode.INTERNAL_SERVER_ERROR.getStatus(),
+                                ErrorCode.INTERNAL_SERVER_ERROR.getCode(),
                                 ErrorCode.INTERNAL_SERVER_ERROR.getMessage(),
                                 null
                         )
