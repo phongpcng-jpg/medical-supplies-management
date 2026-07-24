@@ -7,6 +7,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import io.github.phongpcng_jpg.medical_supplies_management.models.enums.TransactionType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -84,6 +86,7 @@ public class Transaction {
      * or decreased.
      * </p>
      */
+    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private TransactionType type;
 
