@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.github.phongpcng_jpg.medical_supplies_management.utils.validations.annotations.FileExtension;
+import jakarta.validation.constraints.Digits;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -32,6 +33,7 @@ public class SupplyCreateDTO {
 
     @NotNull(message = "Supply unit is required")
     @PositiveOrZero(message = "Supply unit must be greater than or equal to 0")
+    @Digits(integer = 10, fraction = 2, message = "Supply unit must be digits with maximum 10 integer and 2 fraction")
     private BigDecimal unit;
 
     @FileExtension(

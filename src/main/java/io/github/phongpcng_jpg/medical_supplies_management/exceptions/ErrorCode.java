@@ -99,6 +99,12 @@ public enum ErrorCode {
             HttpStatus.INTERNAL_SERVER_ERROR,
             "INTERNAL_SERVER_ERROR",
             "An unexpected error occurred."
+    ),
+
+    NO_TRANSACTION_DATA(
+            HttpStatus.NOT_FOUND,
+            "NO_TRANSACTION_DATA",
+            "No transaction data available."
     );
 
     /**

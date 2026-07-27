@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 
+import io.github.phongpcng_jpg.medical_supplies_management.exceptions.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -182,6 +183,32 @@ public class ApiResponse<T> {
                 .code(code)
                 .message(message)
                 .errors(errors)
+                .build();
+
+    }
+
+    public static <T> ApiResponse<T> success(
+            ErrorCode errorCode,
+            T data) {
+
+        return ApiResponse.<T>builder()
+                .status(errorCode.getStatus().value())
+                .code(errorCode.getCode())
+                .message(errorCode.getMessage())
+                .data(data)
+                .build();
+
+    }
+
+    public static <T> ApiResponse<T> error(
+            ErrorCode errorCode,
+            T errors) {
+
+        return ApiResponse.<T>builder()
+                .status(errorCode.getStatus().value())
+                .code(errorCode.getCode())
+                .message(errorCode.getMessage())
+                .data(errors)
                 .build();
 
     }

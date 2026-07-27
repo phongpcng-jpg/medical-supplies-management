@@ -8,11 +8,13 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Index;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -63,7 +65,13 @@ import lombok.ToString;
  * @see Transaction
  */
 @Entity
-@Table(name = "supplies")
+@Table(
+    name = "supplies",
+    indexes = {
+        @Index(name = "idx_supply_name", columnList = "name"),
+        @Index(name = "idx_supply_deleted", columnList = "is_deleted")
+    }
+)
 @Builder
 @Getter
 @Setter
@@ -187,7 +195,11 @@ public class Supply {
      * Each transaction records a single inventory movement.
      * </p>
      */
-    @OneToMany(mappedBy = "supply")
+    @OneToMany(
+        mappedBy = "supply",
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
     @ToString.Exclude
     @Builder.Default
     private List<Transaction> transactions = new ArrayList<>();
